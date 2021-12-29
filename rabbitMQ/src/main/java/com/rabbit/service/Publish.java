@@ -17,4 +17,8 @@ public class Publish {
     public void sendSms(String message){
         rabbitTemplate.convertAndSend("directExchange","sms",message);
     }
+
+    public void sendTopic(String message){
+        rabbitTemplate.convertAndSend("topicExchange1","zhen","zhenjie"+message);
+    }
 }

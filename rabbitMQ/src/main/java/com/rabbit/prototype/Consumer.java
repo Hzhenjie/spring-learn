@@ -25,5 +25,18 @@ public class Consumer {
         //System.out.println("headers:"+headers);
     }
 
+    @RabbitListener(queues = "topicQueue1")
+    @RabbitHandler
+    public void topicQueue1(@Payload String message, @Headers Map<String, Object> headers){
+        System.out.println("body:"+message+"接收到topicQueue1的message："+message);
+        //System.out.println("headers:"+headers);
+    }
+
+    @RabbitListener(queues = "topicQueue2")
+    @RabbitHandler
+    public void topicQueue2(@Payload String message, @Headers Map<String, Object> headers){
+        System.out.println("body:"+message+"接收到topicQueue2的message："+message);
+    }
+
 
 }

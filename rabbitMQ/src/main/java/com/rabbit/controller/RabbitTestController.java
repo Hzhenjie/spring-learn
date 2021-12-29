@@ -24,6 +24,7 @@ public class RabbitTestController {
     @GetMapping("rabbitTest")
     public String rabbitTest(@RequestParam String content) {
         publish.sendSms("开始："+new Date() +"-内容："+content);
+        publish.sendTopic("123456");
         return "rabbitTest-------------";
     }
 }

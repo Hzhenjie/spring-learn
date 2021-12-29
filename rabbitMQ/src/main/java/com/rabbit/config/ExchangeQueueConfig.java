@@ -1,9 +1,6 @@
 package com.rabbit.config;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -30,4 +27,28 @@ public class ExchangeQueueConfig {
         return BindingBuilder.bind(directQueue1()).to(directExchange()).with("sms");
     }
 
+    @Bean
+    public TopicExchange topicExchange(){
+        return new TopicExchange("topicExchange1");
+    }
+
+    @Bean
+    public Queue topicQueue1(){
+        return new Queue("topicQueue1");
+    }
+
+    @Bean
+    public Queue topicQueue2(){
+        return new Queue("topicQueue2");
+    }
+
+    @Bean
+    public Binding bindingTopic1(){
+        return BindingBuilder.bind(topicQueue1()).to(topicExchange()).with("zhen");
+    }
+
+    @Bean
+    public Binding bindingTopic2(){
+        return BindingBuilder.bind(topicQueue2()).to(topicExchange()).with("zhen");
+    }
 }
