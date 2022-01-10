@@ -1,8 +1,12 @@
 package com.rabbit.config;
 
 import org.springframework.amqp.core.*;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * author:zhenjie
@@ -11,6 +15,13 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ExchangeQueueConfig {
+
+    //延时交换机
+    private String DELAY_EXCHANGE = "DELAY_EXCHANGE";
+    //延时队列
+    private String DELAY_QUEUE = "DELAY_QUEUE";
+
+    private String DELAY_ROUTING_KEY = "DELAY_ROUTING_KEY";
 
     @Bean
     public DirectExchange directExchange(){
@@ -51,4 +62,23 @@ public class ExchangeQueueConfig {
     public Binding bindingTopic2(){
         return BindingBuilder.bind(topicQueue2()).to(topicExchange()).with("zhen");
     }
+
+    @Bean
+    public CustomExchange delayExchange(){
+        Map<String, Object> arguments = new HashMap<String, Object>();
+        arguments.put("x-delayed-type","direct");
+        return new CustomExchange( DELAY_EXCHANGE,  "x-delayed-message",  true,  false, arguments);
+    }
+
+    @Bean
+    public Queue delayQueue(){
+        return new Queue(DELAY_QUEUE);
+    }
+
+    @Bean
+    public Binding delayQueueBindingDelayExchange(@Qualifier("delayExchange")CustomExchange delayExchange,
+                                                  @Qualifier("delayQueue")Queue delayQueue){
+        return BindingBuilder.bind(delayQueue).to(delayExchange).with(DELAY_ROUTING_KEY).noargs();
+    }
+
 }

@@ -2,10 +2,7 @@ package com.rabbit.controller;
 
 import com.rabbit.service.Publish;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -25,6 +22,13 @@ public class RabbitTestController {
     public String rabbitTest(@RequestParam String content) {
         publish.sendSms("开始："+new Date() +"-内容："+content);
         publish.sendTopic("123456");
+        return "rabbitTest-------------";
+    }
+
+    @GetMapping("delayMessage/{time}")
+    public String delayMessage(@RequestParam String content, @PathVariable("time")int time) {
+        System.out.println("有效时间："+time/1000+"s"+"---"+"当前时间："+new Date());
+        publish.sendDelayMessage(content,time);
         return "rabbitTest-------------";
     }
 }

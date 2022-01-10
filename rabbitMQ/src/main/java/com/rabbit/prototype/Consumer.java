@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,5 +39,10 @@ public class Consumer {
         System.out.println("body:"+message+"接收到topicQueue2的message："+message);
     }
 
+    @RabbitListener(queues = "DELAY_QUEUE")
+    @RabbitHandler
+    public void processDelayMessage(@Payload List<String> list, @Headers Map<String, Object> headers){
+        System.out.println("接收到DelayQueue的message："+list.get(0)+"--有效时间为："+list.get(1)+"接受时间："+new Date());
+    }
 
 }
