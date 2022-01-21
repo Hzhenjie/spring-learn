@@ -33,8 +33,8 @@ public class RabbitTestController {
         return "rabbitTest-----success";
     }
 
-    @GetMapping("rabbitTest1")
-    public String rabbitTest1(@RequestParam String content) {
+    @GetMapping("rabbitTest2")
+    public String rabbitTest2(@RequestParam String content) {
         publish.sendSms("开始："+new Date() +"-内容："+content);
         publish.sendTopic("123456");
         return "rabbitTest-------------";
