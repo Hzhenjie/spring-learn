@@ -39,4 +39,11 @@ public class RabbitTestController {
         publish.sendTopic("123456");
         return "rabbitTest-------------";
     }
+
+    @GetMapping("rabbitTest3")
+    public String rabbitTest3(@RequestParam String content) {
+        publish.sendSms("开始："+new Date() +"-内容："+content);
+        publish.sendTopic("123456");
+        return "rabbitTest-------------";
+    }
 }
