@@ -26,9 +26,10 @@ public class RabbitTestController {
     }
 
     @GetMapping("delayMessage/{time}")
-    public String delayMessage(@RequestParam String content, @PathVariable("time")int time) {
+    public String delayMessage(@RequestParam String content, @PathVariable("time")Integer time) {
         System.out.println("有效时间："+time/1000+"s"+"---"+"当前时间："+new Date());
+        System.out.println("内容："+content+"当前时间："+System.currentTimeMillis());
         publish.sendDelayMessage(content,time);
-        return "rabbitTest-------------";
+        return "rabbitTest-----success";
     }
 }

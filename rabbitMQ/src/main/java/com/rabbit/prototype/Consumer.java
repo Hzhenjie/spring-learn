@@ -43,6 +43,7 @@ public class Consumer {
     @RabbitHandler
     public void processDelayMessage(@Payload List<String> list, @Headers Map<String, Object> headers){
         System.out.println("接收到DelayQueue的message："+list.get(0)+"--有效时间为："+list.get(1)+"接受时间："+new Date());
+        System.out.println("接收到内容："+list.get(0)+"当前接收时间："+System.currentTimeMillis());
     }
 
 }
