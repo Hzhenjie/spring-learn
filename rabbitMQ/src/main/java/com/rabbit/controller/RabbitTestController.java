@@ -39,4 +39,9 @@ public class RabbitTestController {
         publish.sendTopic("123456");
         return "rabbitTest-------------";
     }
+
+    @GetMapping("rabbitTestReset")
+    public String rabbitTestReset(@RequestParam String content) {
+        return "rabbitTest-------------";
+    }
 }
