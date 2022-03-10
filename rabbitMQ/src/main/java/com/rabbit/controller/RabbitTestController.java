@@ -49,4 +49,9 @@ public class RabbitTestController {
     public String rabbitTestReset1(@RequestParam String content) {
         return "rabbitTest1-------------";
     }
+
+    @GetMapping("rabbitTestReset2")
+    public String rabbitTestReset2(@RequestParam String content) {
+        return "rabbitTest2-------------";
+    }
 }
