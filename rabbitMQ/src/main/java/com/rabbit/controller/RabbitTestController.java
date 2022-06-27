@@ -20,8 +20,8 @@ public class RabbitTestController {
 
     @GetMapping("rabbitTest")
     public String rabbitTest(@RequestParam String content) {
-        publish.sendSms("开始："+new Date() +"-内容："+content);
-        publish.sendTopic("123456");
+        publish.sendSms("(begin："+new Date() +" 内容："+content+"end)");
+        //publish.sendTopic("123456");
         return "rabbitTest-------------";
     }
 
@@ -35,8 +35,15 @@ public class RabbitTestController {
 
     @GetMapping("rabbitTest2")
     public String rabbitTest2(@RequestParam String content) {
-        publish.sendSms("开始："+new Date() +"-内容："+content);
-        publish.sendTopic("123456");
+        //publish.sendSms("开始："+new Date() +"-内容："+content);
+        publish.sendTopic("routingKey是zhen");
+        return "rabbitTest-------------";
+    }
+
+    @GetMapping("rabbitTest3")
+    public String rabbitTest3(@RequestParam String content) {
+        //publish.sendSms("开始："+new Date() +"-内容："+content);
+        publish.sendTopic1("routingKey是jie");
         return "rabbitTest-------------";
     }
 }

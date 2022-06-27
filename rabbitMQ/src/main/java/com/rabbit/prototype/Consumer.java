@@ -22,21 +22,27 @@ public class Consumer {
     @RabbitListener(queues = "directQueue1")
     @RabbitHandler
     public void directQueue1Consumer(@Payload String message, @Headers Map<String, Object> headers){
-        System.out.println("body:"+message+"接收到："+new Date());
+        System.out.println("what directQueue1 receive is :"+message+"receive time："+new Date());
         //System.out.println("headers:"+headers);
     }
 
     @RabbitListener(queues = "topicQueue1")
     @RabbitHandler
     public void topicQueue1(@Payload String message, @Headers Map<String, Object> headers){
-        System.out.println("body:"+message+"接收到topicQueue1的message："+message);
+        System.out.println("topicQueue1接收到的message："+message);
         //System.out.println("headers:"+headers);
     }
 
     @RabbitListener(queues = "topicQueue2")
     @RabbitHandler
     public void topicQueue2(@Payload String message, @Headers Map<String, Object> headers){
-        System.out.println("body:"+message+"接收到topicQueue2的message："+message);
+        System.out.println("topicQueue2接收到的message："+message);
+    }
+
+    @RabbitListener(queues = "topicQueue3")
+    @RabbitHandler
+    public void topicQueue3(@Payload String message, @Headers Map<String, Object> headers){
+        System.out.println("topicQueue3接收到的message："+message);
     }
 
     @RabbitListener(queues = "DELAY_QUEUE")

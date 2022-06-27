@@ -54,6 +54,11 @@ public class ExchangeQueueConfig {
     }
 
     @Bean
+    public Queue topicQueue3(){
+        return new Queue("topicQueue3");
+    }
+
+    @Bean
     public Binding bindingTopic1(){
         return BindingBuilder.bind(topicQueue1()).to(topicExchange()).with("zhen");
     }
@@ -61,6 +66,11 @@ public class ExchangeQueueConfig {
     @Bean
     public Binding bindingTopic2(){
         return BindingBuilder.bind(topicQueue2()).to(topicExchange()).with("zhen");
+    }
+
+    @Bean
+    public Binding bindingTopic3(){
+        return BindingBuilder.bind(topicQueue3()).to(topicExchange()).with("jie");
     }
 
     @Bean
