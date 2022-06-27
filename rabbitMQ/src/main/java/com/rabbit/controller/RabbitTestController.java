@@ -32,4 +32,11 @@ public class RabbitTestController {
         publish.sendDelayMessage(content,time);
         return "rabbitTest-----success";
     }
+
+    @GetMapping("rabbitTest2")
+    public String rabbitTest2(@RequestParam String content) {
+        publish.sendSms("开始："+new Date() +"-内容："+content);
+        publish.sendTopic("123456");
+        return "rabbitTest-------------";
+    }
 }
