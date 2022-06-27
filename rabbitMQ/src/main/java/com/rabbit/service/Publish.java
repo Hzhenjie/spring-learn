@@ -23,7 +23,11 @@ public class Publish {
     }
 
     public void sendTopic(String message){
-        rabbitTemplate.convertAndSend("topicExchange1","zhen","zhenjie"+message);
+        rabbitTemplate.convertAndSend("topicExchange1","zhen","Topic:"+message);
+    }
+
+    public void sendTopic1(String message){
+        rabbitTemplate.convertAndSend("topicExchange1","jie","Topic:"+message);
     }
 
     public void sendDelayMessage(String message, int time){
