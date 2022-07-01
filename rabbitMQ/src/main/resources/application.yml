@@ -1,9 +1,5 @@
 server:
   port: 10086
-#spring
-spring:
-  banner:
-    location: banner.txt
 
   rabbitmq:
     host: 192.168.56.101
