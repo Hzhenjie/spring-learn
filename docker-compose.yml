@@ -1,0 +1,12 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq_demo_zj
+    container_name: rabbitmq_demo_zj
+    build:
+      context: /opt/docker/rabbitMQ_learn
+    restart: always
+    ports:
+      - '10086:10086'
+    environment:
+      - TZ=Asia/Shanghai
